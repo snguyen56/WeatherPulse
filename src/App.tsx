@@ -1,9 +1,10 @@
-import Logo from "./assets/logo.svg";
-
+import CurrentWeather from "./components/layouts/CurrentWeather";
+import Forecast from "./components/layouts/Forecast";
 function App() {
   return (
-    <main>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <main className="flex h-screen w-screen flex-col lg:flex-row">
+      <CurrentWeather />
+      <Forecast />
     </main>
   );
 }
