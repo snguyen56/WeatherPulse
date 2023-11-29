@@ -6,5 +6,5 @@ type Props = {
 };
 
 export default function Card({ children, className = "" }: Props) {
-  return <div className={`${className} rounded`}>{children}</div>;
+  return <div className={`${className} rounded-xl`}>{children}</div>;
 }
