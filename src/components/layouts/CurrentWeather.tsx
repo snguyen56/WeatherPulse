@@ -73,7 +73,7 @@ export default function CurrentWeather({ weatherData }: Props) {
         </Card>
         <div className="grid grid-cols-2 grid-rows-2 gap-4">
           {currentData.map((data) => (
-            <Card className="h-36 bg-slate-300 p-4">
+            <Card className="h-36 bg-slate-300 p-4" key={data.title}>
               <h2>{data.title}</h2>
               <div className="mt-4 flex items-start gap-2">
                 {data.icon}
