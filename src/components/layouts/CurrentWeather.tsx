@@ -42,13 +42,16 @@ export default function CurrentWeather({ weatherData }: Props) {
   return (
     <IconContext.Provider value={{ size: "50" }}>
       <section className="flex h-1/4 flex-col p-5 lg:h-screen lg:w-1/4">
-        <div className="flex h-[100px] w-full justify-center overflow-hidden">
-          <img className="w-full" src={Logo} alt="WeatherPulse Logo" />
+        <div className="flex min-h-[100px] w-full justify-center overflow-hidden">
+          <img src={Logo} alt="WeatherPulse Logo" />
         </div>
         <div className="mb-5 flex flex-col items-center gap-2 text-center">
-          <WiDaySunny size={150} />
-          <p className="text-8xl">50°</p>
-          <p className="text-4xl">clear</p>
+          <h2 className="text-4xl">Atlanta</h2>
+          <div className="flex items-center">
+            <WiDaySunny size={175} />
+            <p className="pb-5 text-9xl">50°</p>
+          </div>
+          <p className="text-4xl">Clear</p>
           <div className="flex w-1/2 justify-around">
             <p>H:50</p>
             <p>L:50</p>
