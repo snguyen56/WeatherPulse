@@ -41,8 +41,8 @@ export default function CurrentWeather({ weatherData }: Props) {
 
   return (
     <IconContext.Provider value={{ size: "50" }}>
-      <section className="flex h-1/4 flex-col p-5 lg:h-screen lg:w-1/4">
-        <div className="flex min-h-[100px] w-full justify-center overflow-hidden">
+      <section className="flex h-2/4 flex-col p-5 lg:h-screen lg:w-1/4">
+        <div className="flex min-h-[100px] w-full justify-center">
           <img src={Logo} alt="WeatherPulse Logo" />
         </div>
         <div className="mb-5 flex flex-col items-center gap-2 text-center">
@@ -73,7 +73,7 @@ export default function CurrentWeather({ weatherData }: Props) {
         </Card>
         <div className="grid grid-cols-2 grid-rows-2 gap-4">
           {currentData.map((data) => (
-            <Card className="relative h-36 bg-slate-300 p-4">
+            <Card className="h-36 bg-slate-300 p-4">
               <h2>{data.title}</h2>
               <div className="mt-4 flex items-start gap-2">
                 {data.icon}

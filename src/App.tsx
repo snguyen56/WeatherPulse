@@ -7,6 +7,7 @@ function App() {
   console.log(weatherData);
   return (
     <main className="flex h-screen w-screen flex-col lg:flex-row">
+      <h1 className="sr-only">Weather Forecast</h1>
       {weatherData && (
         <>
           <CurrentWeather weatherData={weatherData} />
