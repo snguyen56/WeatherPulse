@@ -11,12 +11,32 @@ import {
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
 
-export default function CurrentWeather() {
+type Props = {
+  weatherData: any;
+};
+
+export default function CurrentWeather({ weatherData }: Props) {
   const currentData = [
-    { title: "Feels Like", icon: <WiThermometer />, data: "40°" },
-    { title: "Humidity", icon: <WiHumidity />, data: "5%" },
-    { title: "Precipitation", icon: <WiRain />, data: "5 in" },
-    { title: "Wind Speed", icon: <WiStrongWind />, data: "5 mph" },
+    {
+      title: "Feels Like",
+      icon: <WiThermometer />,
+      data: weatherData.current.apparent_temperature,
+    },
+    {
+      title: "Humidity",
+      icon: <WiHumidity />,
+      data: weatherData.current.relative_humidity_2m,
+    },
+    {
+      title: "Precipitation",
+      icon: <WiRain />,
+      data: weatherData.current.precipitation,
+    },
+    {
+      title: "Wind Speed",
+      icon: <WiStrongWind />,
+      data: weatherData.current.wind_speed_10m,
+    },
   ];
 
   return (

@@ -6,7 +6,7 @@ function App() {
   console.log(weatherData);
   return (
     <main className="flex h-screen w-screen flex-col lg:flex-row">
-      <CurrentWeather />
+      <CurrentWeather weatherData={weatherData} />
       <Forecast />
     </main>
   );
