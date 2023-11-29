@@ -10,6 +10,9 @@ export default function useWeatherData() {
       .then((data) => data.json())
       .then((data) => {
         setWeatherData(data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }, []);
 
