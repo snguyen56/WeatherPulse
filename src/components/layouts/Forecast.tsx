@@ -9,15 +9,18 @@ type Props = {
 
 export default function Forecast({ weatherData }: Props) {
   return (
-    <section className="flex-1 bg-background px-10 py-8">
+    <section className="rounded-t-xl bg-background px-10 py-8 lg:w-3/4 lg:rounded-none">
       <SearchBar />
       <h2 className="mb-4 mt-20 text-4xl font-bold">Hourly Forecast</h2>
-      <Card className="flex justify-between gap-1 overflow-hidden bg-primary p-2 px-8 text-lg">
+      <Card className="flex gap-10 overflow-hidden bg-primary p-2 px-8 text-lg">
         <IconContext.Provider value={{ size: "50" }}>
           {weatherData.hourly.time
             .slice(0, 15)
             .map((time: string, index: number) => (
-              <div className="flex flex-col gap-1 text-center" key={time}>
+              <div
+                className="flex min-w-fit flex-col gap-1 text-center"
+                key={time}
+              >
                 <h3 className="mb-2 font-bold">
                   {new Date(time).toLocaleTimeString([], { hour: "2-digit" })}
                 </h3>
