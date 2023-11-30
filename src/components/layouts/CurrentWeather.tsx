@@ -10,12 +10,14 @@ import {
   WiThermometer,
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
+import { useEffect, useState } from "react";
 
 type Props = {
   weatherData: any;
 };
 
 export default function CurrentWeather({ weatherData }: Props) {
+  const [city, setCity] = useState("Atlanta");
   const currentData = [
     {
       title: "Feels Like",
@@ -39,6 +41,23 @@ export default function CurrentWeather({ weatherData }: Props) {
     },
   ];
 
+  useEffect(() => {
+    function checkLocalStorage() {
+      const data = localStorage.getItem("location");
+
+      if (data) {
+        setCity(data);
+        console.log("City is: ", data);
+      }
+    }
+
+    window.addEventListener("storage", checkLocalStorage);
+
+    return () => {
+      window.removeEventListener("storage", checkLocalStorage);
+    };
+  }, []);
+
   return (
     <IconContext.Provider value={{ size: "50" }}>
       <section className="flex h-2/4 flex-col p-5 lg:h-screen lg:w-1/4">
@@ -46,7 +65,7 @@ export default function CurrentWeather({ weatherData }: Props) {
           <img src={Logo} alt="WeatherPulse Logo" />
         </div>
         <div className="mb-5 flex flex-col items-center gap-2 text-center">
-          <h2 className="text-4xl">Atlanta</h2>
+          <h2 className="text-4xl">{city}</h2>
           <div className="flex items-center">
             <WiDaySunny size={175} />
             <p className="pb-5 text-9xl">50°</p>

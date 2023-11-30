@@ -21,7 +21,7 @@ export default function Forecast({ weatherData }: Props) {
               <tr className="text-left">
                 <th>Weekday</th>
                 <th>Weather</th>
-                <th>Rain Probability</th>
+                <th>Rain</th>
                 <th>High</th>
                 <th>Low</th>
               </tr>
