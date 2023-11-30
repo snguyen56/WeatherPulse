@@ -89,17 +89,17 @@ export default function CurrentWeather({ weatherData }: Props) {
         </div>
       </div>
       <IconContext.Provider value={{ size: "50" }}>
-        <Card className="mb-5 flex justify-around bg-slate-300 p-5 text-center">
+        <Card className="mb-5 flex justify-around gap-5 bg-slate-300 p-5 text-center">
           <div>
             <h2>Sunrise</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunrise /> <p className="text-4xl">5:00</p>
+              <WiSunrise /> <p className="text-4xl">5:00 AM</p>
             </div>
           </div>
           <div>
             <h2>Sunset</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunset /> <p className="text-4xl">5:00</p>
+              <WiSunset /> <p className="text-4xl">5:00 PM</p>
             </div>
           </div>
         </Card>

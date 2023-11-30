@@ -9,10 +9,10 @@ type Props = {
 
 export default function Forecast({ weatherData }: Props) {
   return (
-    <section className="flex-1 bg-background px-10 py-5">
+    <section className="flex-1 bg-background px-10 py-8">
       <SearchBar />
       <h2 className="mb-4 mt-20 text-4xl font-bold">Hourly Forecast</h2>
-      <Card className="flex justify-between gap-1 overflow-hidden bg-primary p-2 px-8">
+      <Card className="flex justify-between gap-1 overflow-hidden bg-primary p-2 px-8 text-lg">
         <IconContext.Provider value={{ size: "50" }}>
           {weatherData.hourly.time
             .slice(0, 15)
@@ -27,7 +27,7 @@ export default function Forecast({ weatherData }: Props) {
                       code === weatherData.hourly.weather_code[index],
                   )?.dayIcon
                 }
-                <p>{weatherData.hourly.temperature_2m[index]}</p>
+                <p>{weatherData.hourly.temperature_2m[index]}°</p>
               </div>
             ))}
         </IconContext.Provider>
@@ -48,7 +48,11 @@ export default function Forecast({ weatherData }: Props) {
             <tbody>
               {weatherData.daily.time.map((day: string, index: number) => (
                 <tr className="border-t border-black">
-                  <td>{day}</td>
+                  <td>
+                    {new Intl.DateTimeFormat([], { weekday: "long" }).format(
+                      new Date(day),
+                    )}
+                  </td>
                   <td>
                     {
                       WeatherCodes.find(
@@ -58,10 +62,10 @@ export default function Forecast({ weatherData }: Props) {
                     }
                   </td>
                   <td>
-                    {weatherData.daily.precipitation_probability_max[index]}
+                    {weatherData.daily.precipitation_probability_max[index]}%
                   </td>
-                  <td>{weatherData.daily.temperature_2m_max[index]}</td>
-                  <td>{weatherData.daily.temperature_2m_min[index]}</td>
+                  <td>{weatherData.daily.temperature_2m_max[index]}°</td>
+                  <td>{weatherData.daily.temperature_2m_min[index]}°</td>
                 </tr>
               ))}
             </tbody>
