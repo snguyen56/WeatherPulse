@@ -12,10 +12,10 @@ export default function Forecast({ weatherData }: Props) {
     <section className="flex-1 bg-background px-10 py-5">
       <SearchBar />
       <h2 className="mb-4 mt-20 text-4xl font-bold">Hourly Forecast</h2>
-      <Card className="flex justify-between gap-1 bg-primary p-2 px-8">
+      <Card className="flex justify-between gap-1 overflow-hidden bg-primary p-2 px-8">
         <IconContext.Provider value={{ size: "50" }}>
           {weatherData.hourly.time
-            .slice(0, 7)
+            .slice(0, 15)
             .map((time: string, index: number) => (
               <div className="flex flex-col gap-1 text-center" key={time}>
                 <h3 className="mb-2 font-bold">
@@ -32,7 +32,7 @@ export default function Forecast({ weatherData }: Props) {
             ))}
         </IconContext.Provider>
       </Card>
-      <h2 className="mb-4 text-4xl font-bold ">Daily Forecast</h2>
+      <h2 className="mb-4 mt-8 text-4xl font-bold ">Daily Forecast</h2>
       <Card className="bg-primary p-4">
         <IconContext.Provider value={{ size: "50" }}>
           <table className="w-full table-auto text-xl">
