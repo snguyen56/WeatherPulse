@@ -9,16 +9,14 @@ import {
   WiThermometer,
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
-import { useEffect, useState } from "react";
 import { WeatherCodes } from "../../util/WeatherCodes";
 
 type Props = {
   weatherData: any;
+  city: string;
 };
 
-export default function CurrentWeather({ weatherData }: Props) {
-  const [city, setCity] = useState<string>("Berlin");
-
+export default function CurrentWeather({ weatherData, city }: Props) {
   const currentData = [
     {
       title: "Feels Like",
@@ -41,23 +39,6 @@ export default function CurrentWeather({ weatherData }: Props) {
       data: weatherData.current.wind_speed_10m,
     },
   ];
-
-  useEffect(() => {
-    function checkLocalStorage() {
-      const data = localStorage.getItem("location");
-      if (data) {
-        const location = JSON.parse(data);
-        setCity(location.city);
-        console.log("City is: ", JSON.parse(data));
-      }
-    }
-    checkLocalStorage();
-    window.addEventListener("storage", checkLocalStorage);
-
-    return () => {
-      window.removeEventListener("storage", checkLocalStorage);
-    };
-  }, []);
 
   return (
     <section className="flex h-2/4 flex-col p-5 lg:h-screen lg:w-1/4">

@@ -2,15 +2,17 @@ import Card from "../Card";
 import SearchBar from "../SearchBar";
 import { WeatherCodes } from "../../util/WeatherCodes";
 import { IconContext } from "react-icons";
+import { location } from "../../hooks/useWeatherData";
 
 type Props = {
   weatherData: any;
+  setLocationData: React.Dispatch<React.SetStateAction<location>>;
 };
 
-export default function Forecast({ weatherData }: Props) {
+export default function Forecast({ weatherData, setLocationData }: Props) {
   return (
     <section className="rounded-t-xl bg-background px-10 py-8 lg:w-3/4 lg:rounded-none">
-      <SearchBar />
+      <SearchBar setLocationData={setLocationData} />
       <h2 className="mb-4 mt-20 text-4xl font-bold">Hourly Forecast</h2>
       <Card className="flex gap-10 overflow-hidden bg-primary p-2 px-8 text-lg">
         <IconContext.Provider value={{ size: "50" }}>

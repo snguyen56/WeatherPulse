@@ -1,17 +1,20 @@
 import { useState } from "react";
 import dummyData from "../data/geocoding.json";
-type Props = {};
+import { location } from "../hooks/useWeatherData";
 
-function handleSubmit(city: string, latitude: number, longitude: number) {
-  localStorage.setItem(
-    "location",
-    JSON.stringify({ city: city, latitude: latitude, longitude: longitude }),
-  );
-  localStorage.setItem("city", city);
-}
+type Props = {
+  setLocationData: React.Dispatch<React.SetStateAction<location>>;
+};
 
-export default function SearchBar({}: Props) {
+export default function SearchBar({ setLocationData }: Props) {
   const [active, setActive] = useState<boolean>(true);
+
+  function handleSubmit(city: string, latitude: number, longitude: number) {
+    const data = { city: city, latitude: latitude, longitude: longitude };
+    localStorage.setItem("location", JSON.stringify(data));
+    setLocationData(data);
+  }
+
   return (
     <form className="relative w-[400px]">
       <input
