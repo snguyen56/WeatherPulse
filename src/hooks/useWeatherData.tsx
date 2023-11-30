@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function useWeatherData() {
-  const [weatherData, setWeatherData]: any = useState();
+  const [weatherData, setWeatherData] = useState();
 
   useEffect(() => {
     fetch(

@@ -17,7 +17,7 @@ type Props = {
 };
 
 export default function CurrentWeather({ weatherData }: Props) {
-  const [city, setCity] = useState("Atlanta");
+  const [city, setCity] = useState<string>("Atlanta");
 
   const currentData = [
     {
