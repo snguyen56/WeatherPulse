@@ -17,7 +17,7 @@ type Props = {
 };
 
 export default function CurrentWeather({ weatherData }: Props) {
-  const [city, setCity] = useState<string>("Atlanta");
+  const [city, setCity] = useState<string>("Berlin");
 
   const currentData = [
     {
@@ -45,13 +45,13 @@ export default function CurrentWeather({ weatherData }: Props) {
   useEffect(() => {
     function checkLocalStorage() {
       const data = localStorage.getItem("location");
-
       if (data) {
-        setCity(data);
-        console.log("City is: ", data);
+        const location = JSON.parse(data);
+        setCity(location.city);
+        console.log("City is: ", JSON.parse(data));
       }
     }
-
+    checkLocalStorage();
     window.addEventListener("storage", checkLocalStorage);
 
     return () => {
@@ -74,7 +74,7 @@ export default function CurrentWeather({ weatherData }: Props) {
               )?.dayIcon
             }
           </IconContext.Provider>
-          <p className="pb-5 text-9xl">50°</p>
+          <p className="pb-5 text-9xl">{weatherData.current.temperature_2m}°</p>
         </div>
         <p className="text-4xl">
           {

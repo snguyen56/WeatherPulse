@@ -50,7 +50,7 @@ export default function Forecast({ weatherData }: Props) {
             </thead>
             <tbody>
               {weatherData.daily.time.map((day: string, index: number) => (
-                <tr className="border-t border-black">
+                <tr className="border-t border-black" key={day}>
                   <td>
                     {new Intl.DateTimeFormat([], { weekday: "long" }).format(
                       new Date(day),

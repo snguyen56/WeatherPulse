@@ -2,9 +2,16 @@ import { useState } from "react";
 import dummyData from "../data/geocoding.json";
 type Props = {};
 
+function handleSubmit(city: string, latitude: number, longitude: number) {
+  localStorage.setItem(
+    "location",
+    JSON.stringify({ city: city, latitude: latitude, longitude: longitude }),
+  );
+  localStorage.setItem("city", city);
+}
+
 export default function SearchBar({}: Props) {
   const [active, setActive] = useState<boolean>(true);
-  console.log(dummyData);
   return (
     <form className="relative w-[400px]">
       <input
@@ -19,7 +26,13 @@ export default function SearchBar({}: Props) {
         }`}
       >
         {dummyData.results.map((data) => (
-          <li className="p-2 hover:bg-slate-100">
+          <li
+            className="cursor-pointer p-2 hover:bg-slate-100"
+            onClick={() =>
+              handleSubmit(data.name, data.latitude, data.longitude)
+            }
+            key={data.id}
+          >
             <p>{data.name}</p>
             <p className="text-sm text-slate-500">
               {data.admin1} ({data.latitude}°, {data.longitude}°)
