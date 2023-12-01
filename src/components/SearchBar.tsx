@@ -32,17 +32,21 @@ export default function SearchBar({ setLocationData }: Props) {
   const [locations, setLocations] = useState<geocode[]>([]);
 
   useEffect(() => {
-    if (search.length > 1) {
-      fetch(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${search}&count=10&language=en&format=json`,
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setLocations(data.results);
-          console.log(data);
-        })
-        .catch((error) => console.error("Error getting locations: ", error));
-    }
+    const getData = setTimeout(() => {
+      if (search.length > 1) {
+        fetch(
+          `https://geocoding-api.open-meteo.com/v1/search?name=${search}&count=10&language=en&format=json`,
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            setLocations(data.results);
+            console.log(data);
+          })
+          .catch((error) => console.error("Error getting locations: ", error));
+      }
+    }, 300);
+
+    return () => clearTimeout(getData);
   }, [search]);
 
   function handleSubmit(city: string, latitude: number, longitude: number) {
