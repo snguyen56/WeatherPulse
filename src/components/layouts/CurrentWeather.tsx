@@ -20,22 +20,22 @@ export default function CurrentWeather({ weatherData, city }: Props) {
   const currentData = [
     {
       title: "Feels Like",
-      icon: <WiThermometer />,
+      icon: <WiThermometer title="apparent temperature" />,
       data: weatherData.current.apparent_temperature,
     },
     {
       title: "Humidity",
-      icon: <WiHumidity />,
+      icon: <WiHumidity title="humidity" />,
       data: weatherData.current.relative_humidity_2m,
     },
     {
       title: "Precipitation",
-      icon: <WiRain />,
+      icon: <WiRain title="precipitation" />,
       data: weatherData.current.precipitation,
     },
     {
       title: "Wind Speed",
-      icon: <WiStrongWind />,
+      icon: <WiStrongWind title="wind speed" />,
       data: weatherData.current.wind_speed_10m,
     },
   ];
@@ -74,13 +74,13 @@ export default function CurrentWeather({ weatherData, city }: Props) {
           <div>
             <h2>Sunrise</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunrise /> <p className="text-4xl">5:00AM</p>
+              <WiSunrise title="sunrise" /> <p className="text-4xl">5:00AM</p>
             </div>
           </div>
           <div>
             <h2>Sunset</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunset /> <p className="text-4xl">5:00PM</p>
+              <WiSunset title="sunset" /> <p className="text-4xl">5:00PM</p>
             </div>
           </div>
         </Card>
