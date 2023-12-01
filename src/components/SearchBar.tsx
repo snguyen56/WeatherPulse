@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { location } from "../hooks/useWeatherData";
 
 type Props = {
@@ -31,6 +31,21 @@ export default function SearchBar({ setLocationData }: Props) {
   const [search, SetSearch] = useState<string>("");
   const [locations, setLocations] = useState<geocode[]>([]);
 
+  const dropdownRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent | TouchEvent) => {
+      if (
+        dropdownRef.current !== null &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setActive(false);
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+  }, []);
+
   useEffect(() => {
     const getData = setTimeout(() => {
       if (search.length > 1) {
@@ -56,7 +71,7 @@ export default function SearchBar({ setLocationData }: Props) {
   }
 
   return (
-    <form className="relative w-[400px]">
+    <form className="relative w-[400px]" ref={dropdownRef}>
       <input
         className="w-full rounded p-2 focus:outline-none focus:ring focus:ring-slate-400"
         type="text"
@@ -64,8 +79,8 @@ export default function SearchBar({ setLocationData }: Props) {
         placeholder="Search for a location..."
         onChange={(e) => {
           SetSearch(e.target.value);
-          setActive(true);
         }}
+        onFocus={() => setActive(true)}
       />
       <ul
         className={`absolute top-10 w-full divide-y rounded-xl border border-slate-300 bg-white p-2 ${
@@ -75,9 +90,10 @@ export default function SearchBar({ setLocationData }: Props) {
         {locations?.map((data) => (
           <li
             className="cursor-pointer p-2 hover:bg-slate-100"
-            onClick={() =>
-              handleSubmit(data.name, data.latitude, data.longitude)
-            }
+            onClick={() => {
+              handleSubmit(data.name, data.latitude, data.longitude);
+              setActive(false);
+            }}
             key={data.id}
           >
             <p>{data.name}</p>
