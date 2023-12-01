@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import dummyData from "../data/geocoding.json";
 import { location } from "../hooks/useWeatherData";
 
 type Props = {
@@ -28,7 +27,7 @@ type geocode = {
 };
 
 export default function SearchBar({ setLocationData }: Props) {
-  const [active, setActive] = useState<boolean>(true);
+  const [active, setActive] = useState<boolean>(false);
   const [search, SetSearch] = useState<string>("");
   const [locations, setLocations] = useState<geocode[]>([]);
 
@@ -38,7 +37,11 @@ export default function SearchBar({ setLocationData }: Props) {
         `https://geocoding-api.open-meteo.com/v1/search?name=${search}&count=10&language=en&format=json`,
       )
         .then((response) => response.json())
-        .then((data) => setLocations(data.results));
+        .then((data) => {
+          setLocations(data.results);
+          console.log(data);
+        })
+        .catch((error) => console.error("Error getting locations: ", error));
     }
   }, [search]);
 
@@ -55,7 +58,10 @@ export default function SearchBar({ setLocationData }: Props) {
         type="text"
         value={search}
         placeholder="Search for a location..."
-        onChange={(e) => SetSearch(e.target.value)}
+        onChange={(e) => {
+          SetSearch(e.target.value);
+          setActive(true);
+        }}
       />
       <ul
         className={`absolute top-10 w-full divide-y rounded-xl border border-slate-300 bg-white p-2 ${
