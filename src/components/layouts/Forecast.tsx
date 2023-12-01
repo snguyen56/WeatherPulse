@@ -46,17 +46,17 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
                 <th>Weekday</th>
                 <th>Weather</th>
                 <th>Rain</th>
-                <th>High</th>
                 <th>Low</th>
+                <th>High</th>
               </tr>
             </thead>
             <tbody>
               {weatherData.daily.time.map((day: string, index: number) => (
                 <tr className="border-t border-black" key={day}>
                   <td>
-                    {new Intl.DateTimeFormat([], { weekday: "long" }).format(
-                      new Date(day),
-                    )}
+                    {new Intl.DateTimeFormat([], {
+                      weekday: "long",
+                    }).format(new Date(`${day}T00:00`))}
                   </td>
                   <td>
                     {
@@ -69,8 +69,8 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
                   <td>
                     {weatherData.daily.precipitation_probability_max[index]}%
                   </td>
-                  <td>{weatherData.daily.temperature_2m_max[index]}°</td>
                   <td>{weatherData.daily.temperature_2m_min[index]}°</td>
+                  <td>{weatherData.daily.temperature_2m_max[index]}°</td>
                 </tr>
               ))}
             </tbody>
