@@ -64,7 +64,7 @@ export default function CurrentWeather({ weatherData, city }: Props) {
             )?.description
           }
         </p>
-        <div className="flex w-1/2 justify-around">
+        <div className="flex w-1/2 justify-around text-2xl">
           <p>H:50</p>
           <p>L:50</p>
         </div>

@@ -37,7 +37,7 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
             ))}
         </IconContext.Provider>
       </Card>
-      <h2 className="mb-4 mt-8 text-4xl font-bold ">Daily Forecast</h2>
+      <h2 className="mb-4 mt-8 text-4xl font-bold ">7-Day Forecast</h2>
       <Card className="bg-primary p-4">
         <IconContext.Provider value={{ size: "50" }}>
           <table className="w-full table-auto text-xl">
