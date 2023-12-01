@@ -57,7 +57,6 @@ export default function SearchBar({ setLocationData }: Props) {
           .then((response) => response.json())
           .then((data) => {
             setLocations(data.results);
-            console.log(data);
             setLoading(false);
           })
           .catch((error) => console.error("Error getting locations: ", error));

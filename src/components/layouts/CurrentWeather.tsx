@@ -55,7 +55,7 @@ export default function CurrentWeather({ weatherData, city }: Props) {
               )?.dayIcon
             }
           </IconContext.Provider>
-          <p className="pb-5 text-9xl">{weatherData.current.temperature_2m}°</p>
+          <p className="pb-5 text-8xl">{weatherData.current.temperature_2m}°</p>
         </div>
         <p className="text-4xl">
           {
