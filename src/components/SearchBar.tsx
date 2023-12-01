@@ -27,7 +27,7 @@ type geocode = {
 };
 
 export default function SearchBar({ setLocationData }: Props) {
-  const [active, setActive] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [search, SetSearch] = useState<string>("");
   const [locations, setLocations] = useState<geocode[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -40,7 +40,7 @@ export default function SearchBar({ setLocationData }: Props) {
         dropdownRef.current !== null &&
         !dropdownRef.current.contains(e.target as Node)
       ) {
-        setActive(false);
+        setOpen(false);
       }
     };
 
@@ -83,11 +83,11 @@ export default function SearchBar({ setLocationData }: Props) {
         onChange={(e) => {
           SetSearch(e.target.value);
         }}
-        onFocus={() => setActive(true)}
+        onFocus={() => setOpen(true)}
       />
       <ul
         className={`absolute top-10 w-full divide-y rounded-xl border border-slate-300 bg-white p-2 ${
-          active ? "" : "hidden"
+          open && (locations?.length > 0 || loading) ? "" : "hidden"
         }`}
       >
         {loading ? (
@@ -115,7 +115,7 @@ export default function SearchBar({ setLocationData }: Props) {
               className="cursor-pointer p-2 hover:bg-slate-100"
               onClick={() => {
                 handleSubmit(data.name, data.latitude, data.longitude);
-                setActive(false);
+                setOpen(false);
               }}
               key={data.id}
             >
