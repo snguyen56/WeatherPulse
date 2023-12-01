@@ -74,13 +74,13 @@ export default function CurrentWeather({ weatherData, city }: Props) {
           <div>
             <h2>Sunrise</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunrise /> <p className="text-4xl">5:00 AM</p>
+              <WiSunrise /> <p className="text-4xl">5:00AM</p>
             </div>
           </div>
           <div>
             <h2>Sunset</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunset /> <p className="text-4xl">5:00 PM</p>
+              <WiSunset /> <p className="text-4xl">5:00PM</p>
             </div>
           </div>
         </Card>
