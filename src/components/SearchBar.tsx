@@ -33,6 +33,7 @@ export default function SearchBar({ setLocationData }: Props) {
   const [loading, setLoading] = useState<boolean>(false);
 
   const dropdownRef = useRef<HTMLFormElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent | TouchEvent) => {
@@ -66,19 +67,36 @@ export default function SearchBar({ setLocationData }: Props) {
     return () => clearTimeout(getData);
   }, [search]);
 
-  function handleSubmit(city: string, latitude: number, longitude: number) {
+  function handleClick(city: string, latitude: number, longitude: number) {
     const data = { city: city, latitude: latitude, longitude: longitude };
     localStorage.setItem("location", JSON.stringify(data));
     setLocationData(data);
+    SetSearch("");
+  }
+
+  function handleSubmit(event: React.SyntheticEvent) {
+    event.preventDefault();
+    handleClick(
+      locations[0].name,
+      locations[0].latitude,
+      locations[0].longitude,
+    );
+    searchRef.current?.blur();
+    setOpen(false);
   }
 
   return (
-    <form className="relative w-[400px]" ref={dropdownRef}>
+    <form
+      className="relative w-[400px]"
+      ref={dropdownRef}
+      onSubmit={handleSubmit}
+    >
       <input
         className="w-full rounded p-2 focus:outline-none focus:ring focus:ring-slate-400"
         type="text"
         value={search}
         placeholder="Search for a location..."
+        ref={searchRef}
         onChange={(e) => {
           SetSearch(e.target.value);
         }}
@@ -113,7 +131,7 @@ export default function SearchBar({ setLocationData }: Props) {
             <li
               className="cursor-pointer p-2 hover:bg-slate-100"
               onClick={() => {
-                handleSubmit(data.name, data.latitude, data.longitude);
+                handleClick(data.name, data.latitude, data.longitude);
                 setOpen(false);
               }}
               key={data.id}
