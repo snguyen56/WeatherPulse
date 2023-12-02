@@ -30,12 +30,16 @@ export default function useWeatherData() {
   }, []);
 
   useEffect(() => {
+    let active = true;
     fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${locationData?.latitude}&longitude=${locationData?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto`,
     )
       .then((data) => data.json())
       .then((data) => {
-        setWeatherData(data);
+        if (active) {
+          setWeatherData(data);
+        }
+
         // console.log(
         //   `https://api.open-meteo.com/v1/forecast?latitude=${locationData?.latitude}&longitude=${locationData?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto`,
         // );
@@ -43,6 +47,10 @@ export default function useWeatherData() {
       .catch((error) => {
         console.error(error);
       });
+
+    return () => {
+      active = false;
+    };
   }, [locationData]);
 
   return { weatherData, locationData, setLocationData };
