@@ -85,7 +85,7 @@ export default function SearchBar({ setLocationData }: Props) {
         onFocus={() => setOpen(true)}
       />
       <ul
-        className={`absolute top-10 w-full divide-y rounded-xl border border-slate-300 bg-white p-2 ${
+        className={`absolute top-10 z-50 w-full divide-y rounded-xl border border-slate-300 bg-white p-2 ${
           open && (locations?.length > 0 || loading) ? "" : "hidden"
         }`}
       >
