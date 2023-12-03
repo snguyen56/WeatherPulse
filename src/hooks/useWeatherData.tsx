@@ -32,7 +32,7 @@ export default function useWeatherData() {
   useEffect(() => {
     let ignore = false;
     fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${locationData?.latitude}&longitude=${locationData?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto`,
+      `https://api.open-meteo.com/v1/forecast?latitude=${locationData?.latitude}&longitude=${locationData?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto`,
     )
       .then((data) => data.json())
       .then((data) => {
@@ -41,8 +41,8 @@ export default function useWeatherData() {
         }
 
         // console.log(
-        //   `https://api.open-meteo.com/v1/forecast?latitude=${locationData?.latitude}&longitude=${locationData?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto`,
-        // );
+        //   `https://api.open-meteo.com/v1/forecast?latitude=${locationData?.latitude}&longitude=${locationData?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto`,
+        //   );
       })
       .catch((error) => {
         console.error(error);

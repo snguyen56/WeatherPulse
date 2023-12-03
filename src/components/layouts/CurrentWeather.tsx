@@ -65,8 +65,8 @@ export default function CurrentWeather({ weatherData, city }: Props) {
           }
         </p>
         <div className="flex w-1/2 justify-around text-2xl">
-          <p>H:50°</p>
-          <p>L:50°</p>
+          <p>{`H:${weatherData.daily.temperature_2m_max[0]}°`}</p>
+          <p>{`L:${weatherData.daily.temperature_2m_min[0]}°`}</p>
         </div>
       </div>
       <IconContext.Provider value={{ size: "50" }}>
@@ -74,13 +74,29 @@ export default function CurrentWeather({ weatherData, city }: Props) {
           <div>
             <h2>Sunrise</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunrise title="sunrise" /> <p className="text-4xl">5:00AM</p>
+              <WiSunrise title="sunrise" />{" "}
+              <p className="text-4xl">
+                {new Date(weatherData.daily.sunrise[0])
+                  .toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                  .replace(/\s+/, "")}
+              </p>
             </div>
           </div>
           <div>
             <h2>Sunset</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunset title="sunset" /> <p className="text-4xl">5:00PM</p>
+              <WiSunset title="sunset" />{" "}
+              <p className="text-4xl">
+                {new Date(weatherData.daily.sunset[0])
+                  .toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                  .replace(/\s+/, "")}
+              </p>
             </div>
           </div>
         </Card>
