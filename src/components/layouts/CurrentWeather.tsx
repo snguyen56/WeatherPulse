@@ -21,22 +21,22 @@ export default function CurrentWeather({ weatherData, city }: Props) {
     {
       title: "Feels Like",
       icon: <WiThermometer title="apparent temperature" />,
-      data: weatherData.current.apparent_temperature,
+      data: `${weatherData.current.apparent_temperature}°`,
     },
     {
       title: "Humidity",
       icon: <WiHumidity title="humidity" />,
-      data: weatherData.current.relative_humidity_2m,
+      data: `${weatherData.current.relative_humidity_2m}%`,
     },
     {
       title: "Precipitation",
       icon: <WiRain title="precipitation" />,
-      data: weatherData.current.precipitation,
+      data: `${weatherData.current.precipitation}"`,
     },
     {
       title: "Wind Speed",
       icon: <WiStrongWind title="wind speed" />,
-      data: weatherData.current.wind_speed_10m,
+      data: `${weatherData.current.wind_speed_10m}mph`,
     },
   ];
 
