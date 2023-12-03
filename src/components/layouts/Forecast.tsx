@@ -2,12 +2,12 @@ import Card from "../Card";
 import SearchBar from "../SearchBar";
 import { WeatherCodes } from "../../util/WeatherCodes";
 import { IconContext } from "react-icons";
-import { location } from "../../hooks/useWeatherData";
+import { location, weatherData } from "../../hooks/useWeatherData";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
 type Props = {
-  weatherData: any;
+  weatherData: weatherData;
   setLocationData: React.Dispatch<React.SetStateAction<location>>;
 };
 

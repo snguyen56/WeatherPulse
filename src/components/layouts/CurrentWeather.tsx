@@ -10,9 +10,9 @@ import {
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
 import { WeatherCodes } from "../../util/WeatherCodes";
-
+import { weatherData } from "../../hooks/useWeatherData";
 type Props = {
-  weatherData: any;
+  weatherData: weatherData;
   city: string;
 };
 
