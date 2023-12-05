@@ -74,6 +74,7 @@ export default function SearchBar({ setLocationData }: Props) {
     setLocationData(data);
     SetSearch("");
     setSelectedIndex(0);
+    setLocations([]);
   }
 
   function handleKeydown(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -104,14 +105,11 @@ export default function SearchBar({ setLocationData }: Props) {
     );
     searchRef.current?.blur();
     setOpen(false);
+    setLocations([]);
   }
 
   return (
-    <form
-      className="relative md:w-[400px]"
-      ref={dropdownRef}
-      onSubmit={handleSubmit}
-    >
+    <form className="relative w-full" ref={dropdownRef} onSubmit={handleSubmit}>
       <input
         className="w-full rounded p-2 focus:outline-none focus:ring focus:ring-slate-400"
         type="text"

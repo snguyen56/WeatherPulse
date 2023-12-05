@@ -16,7 +16,9 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
   const dragRef = useRef<HTMLDivElement>(null);
   return (
     <section className="rounded-t-xl bg-background px-10 py-8 lg:w-3/4 lg:rounded-none">
-      <SearchBar setLocationData={setLocationData} />
+      <div className="hidden w-[400px] md:block">
+        <SearchBar setLocationData={setLocationData} />
+      </div>
       <h2 className="mb-4 mt-20 text-4xl font-bold">Hourly Forecast</h2>
       <Card
         className="flex cursor-grab overflow-hidden bg-primary text-lg"

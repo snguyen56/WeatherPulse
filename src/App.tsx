@@ -9,7 +9,11 @@ function App() {
       <h1 className="sr-only">Weather Forecast</h1>
       {weatherData && (
         <>
-          <CurrentWeather weatherData={weatherData} city={locationData?.city} />
+          <CurrentWeather
+            weatherData={weatherData}
+            city={locationData?.city}
+            setLocationData={setLocationData}
+          />
           <Forecast
             weatherData={weatherData}
             setLocationData={setLocationData}

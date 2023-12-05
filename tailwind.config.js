@@ -9,6 +9,9 @@ export default {
         background: "#CDF5FD",
         primary: "#A0E9FF",
       },
+      screens: {
+        "3xl": "1750px",
+      },
     },
   },
   plugins: [],

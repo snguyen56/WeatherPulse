@@ -12,13 +12,19 @@ import { IconContext } from "react-icons";
 import { WeatherCodes } from "../../util/WeatherCodes";
 import { weatherData } from "../../hooks/useWeatherData";
 import GetDayNightIcon from "../../util/GetDayNightIcon";
+import SearchBar from "../SearchBar";
 
 type Props = {
   weatherData: weatherData;
   city: string;
+  setLocationData: React.Dispatch<React.SetStateAction<location>>;
 };
 
-export default function CurrentWeather({ weatherData, city }: Props) {
+export default function CurrentWeather({
+  weatherData,
+  city,
+  setLocationData,
+}: Props) {
   const currentData = [
     {
       title: "Feels Like",
@@ -43,12 +49,17 @@ export default function CurrentWeather({ weatherData, city }: Props) {
   ];
 
   return (
-    <section className="flex h-2/4 flex-col p-5 lg:h-screen lg:w-1/4">
+    <section className="flex h-3/5 flex-col p-5 lg:h-screen lg:w-1/4">
       <div className="flex min-h-[100px] w-full justify-center">
         <img src={Logo} alt="WeatherPulse Logo" />
       </div>
+      <div className="mt-4 flex justify-center md:hidden">
+        <span className="w-full rounded ring ring-slate-400">
+          <SearchBar setLocationData={setLocationData} />
+        </span>
+      </div>
       <div className="my-4 flex flex-col items-center gap-2 text-center">
-        <h2 className="w-full truncate text-4xl font-semibold ">{city}</h2>
+        <h2 className="w-full truncate text-4xl font-semibold">{city}</h2>
         <div className="flex items-center">
           <IconContext.Provider value={{ size: "175" }}>
             {GetDayNightIcon(
@@ -56,7 +67,9 @@ export default function CurrentWeather({ weatherData, city }: Props) {
               weatherData.current.weather_code,
             )}
           </IconContext.Provider>
-          <p className="pb-5 text-8xl">{weatherData.current.temperature_2m}°</p>
+          <p className="3xl:text-8xl pb-5 text-7xl lg:text-4xl xl:text-6xl 2xl:text-7xl">
+            {weatherData.current.temperature_2m}°
+          </p>
         </div>
         <p className="text-4xl">
           {
@@ -75,8 +88,10 @@ export default function CurrentWeather({ weatherData, city }: Props) {
           <div>
             <h2>Sunrise</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunrise title="sunrise" />{" "}
-              <p className="pt-1 text-3xl">
+              <span className="hidden 2xl:block">
+                <WiSunrise title="sunrise" />
+              </span>
+              <p className="3xl:text-3xl pt-1 lg:text-2xl xl:text-3xl 2xl:text-2xl">
                 {new Date(weatherData.daily.sunrise[0])
                   .toLocaleTimeString([], {
                     hour: "2-digit",
@@ -89,8 +104,10 @@ export default function CurrentWeather({ weatherData, city }: Props) {
           <div>
             <h2>Sunset</h2>
             <div className="flex items-start justify-center gap-2">
-              <WiSunset title="sunset" />{" "}
-              <p className="pt-1 text-3xl">
+              <span className="hidden 2xl:block">
+                <WiSunset title="sunset" />
+              </span>
+              <p className="3xl:text-3xl pt-1 lg:text-2xl xl:text-3xl 2xl:text-2xl">
                 {new Date(weatherData.daily.sunset[0])
                   .toLocaleTimeString([], {
                     hour: "2-digit",
@@ -104,10 +121,12 @@ export default function CurrentWeather({ weatherData, city }: Props) {
         <div className="hidden grid-cols-2 grid-rows-2 gap-4 lg:grid">
           {currentData.map((data) => (
             <Card className="h-36 bg-slate-300 p-4" key={data.title}>
-              <h2>{data.title}</h2>
+              <h2>{data.title}:</h2>
               <div className="mt-4 flex items-start gap-2">
-                {data.icon}
-                <p className="text-4xl">{data.data}</p>
+                <span className="3xl:block hidden">{data.icon}</span>
+                <p className="3xl:text-4xl lg:text-2xl xl:text-3xl">
+                  {data.data}
+                </p>
               </div>
             </Card>
           ))}
