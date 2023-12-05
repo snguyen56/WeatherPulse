@@ -108,7 +108,7 @@ export default function SearchBar({ setLocationData }: Props) {
 
   return (
     <form
-      className="relative w-[400px]"
+      className="relative md:w-[400px]"
       ref={dropdownRef}
       onSubmit={handleSubmit}
     >

@@ -48,7 +48,7 @@ export default function CurrentWeather({ weatherData, city }: Props) {
         <img src={Logo} alt="WeatherPulse Logo" />
       </div>
       <div className="my-4 flex flex-col items-center gap-2 text-center">
-        <h2 className="text-4xl font-semibold">{city}</h2>
+        <h2 className="w-full truncate text-4xl font-semibold ">{city}</h2>
         <div className="flex items-center">
           <IconContext.Provider value={{ size: "175" }}>
             {GetDayNightIcon(
@@ -65,18 +65,18 @@ export default function CurrentWeather({ weatherData, city }: Props) {
             )?.description
           }
         </p>
-        <div className="flex w-1/2 justify-around text-2xl">
+        <div className="flex w-1/2 justify-around text-2xl font-medium">
           <p>{`H:${weatherData.daily.temperature_2m_max[0]}°`}</p>
           <p>{`L:${weatherData.daily.temperature_2m_min[0]}°`}</p>
         </div>
       </div>
       <IconContext.Provider value={{ size: "50" }}>
-        <Card className="mb-5 flex justify-around gap-5 bg-slate-300 p-5 text-center">
+        <Card className="mb-5 hidden justify-around gap-5 bg-slate-300 p-5 text-center lg:flex">
           <div>
             <h2>Sunrise</h2>
             <div className="flex items-start justify-center gap-2">
               <WiSunrise title="sunrise" />{" "}
-              <p className="text-4xl">
+              <p className="pt-1 text-3xl">
                 {new Date(weatherData.daily.sunrise[0])
                   .toLocaleTimeString([], {
                     hour: "2-digit",
@@ -90,7 +90,7 @@ export default function CurrentWeather({ weatherData, city }: Props) {
             <h2>Sunset</h2>
             <div className="flex items-start justify-center gap-2">
               <WiSunset title="sunset" />{" "}
-              <p className="text-4xl">
+              <p className="pt-1 text-3xl">
                 {new Date(weatherData.daily.sunset[0])
                   .toLocaleTimeString([], {
                     hour: "2-digit",
@@ -101,7 +101,7 @@ export default function CurrentWeather({ weatherData, city }: Props) {
             </div>
           </div>
         </Card>
-        <div className="grid grid-cols-2 grid-rows-2 gap-4">
+        <div className="hidden grid-cols-2 grid-rows-2 gap-4 lg:grid">
           {currentData.map((data) => (
             <Card className="h-36 bg-slate-300 p-4" key={data.title}>
               <h2>{data.title}</h2>

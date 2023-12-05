@@ -30,7 +30,7 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
             whileTap={{ cursor: "grabbing" }}
           >
             {weatherData.hourly.time
-              .slice(0, 25)
+              .slice(0, 24)
               .map((time: string, index: number) => (
                 <div
                   className="flex min-w-max flex-col gap-1 text-center"
@@ -53,7 +53,7 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
       <h2 className="mb-4 mt-8 text-4xl font-bold ">7-Day Forecast</h2>
       <Card className="bg-primary p-4">
         <IconContext.Provider value={{ size: "50" }}>
-          <table className="w-full table-auto text-xl">
+          <table className="w-full table-auto text-lg md:text-xl">
             <thead>
               <tr className="text-left">
                 <th>Weekday</th>

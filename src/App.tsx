@@ -5,7 +5,7 @@ import useWeatherData from "./hooks/useWeatherData";
 function App() {
   const { weatherData, locationData, setLocationData } = useWeatherData();
   return (
-    <main className="flex h-screen w-screen flex-col lg:flex-row">
+    <main className="flex h-screen w-screen flex-col antialiased lg:flex-row">
       <h1 className="sr-only">Weather Forecast</h1>
       {weatherData && (
         <>
