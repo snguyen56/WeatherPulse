@@ -17,7 +17,6 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
     <section className="rounded-t-xl bg-background px-10 py-8 lg:w-3/4 lg:rounded-none">
       <SearchBar setLocationData={setLocationData} />
       <h2 className="mb-4 mt-20 text-4xl font-bold">Hourly Forecast</h2>
-
       <Card
         className="flex cursor-grab overflow-hidden bg-primary text-lg"
         reference={dragRef}

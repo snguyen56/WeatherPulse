@@ -31,6 +31,7 @@ export default function SearchBar({ setLocationData }: Props) {
   const [search, SetSearch] = useState<string>("");
   const [locations, setLocations] = useState<geocode[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const dropdownRef = useRef<HTMLFormElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -72,14 +73,34 @@ export default function SearchBar({ setLocationData }: Props) {
     localStorage.setItem("location", JSON.stringify(data));
     setLocationData(data);
     SetSearch("");
+    setSelectedIndex(0);
+  }
+
+  function handleKeydown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "ArrowUp") {
+      selectedIndex === 0
+        ? setSelectedIndex(locations.length - 1)
+        : setSelectedIndex((previousIndex) => previousIndex - 1);
+    } else if (event.key === "ArrowDown") {
+      selectedIndex === locations.length - 1
+        ? setSelectedIndex(0)
+        : setSelectedIndex((previousIndex) => previousIndex + 1);
+    } else if (event.key === "Escape") {
+      searchRef.current?.blur();
+      setOpen(false);
+    } else if (event.key === "Home") {
+      setSelectedIndex(0);
+    } else if (event.key === "End") {
+      setSelectedIndex(locations.length - 1);
+    }
   }
 
   function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     handleClick(
-      locations[0].name,
-      locations[0].latitude,
-      locations[0].longitude,
+      locations[selectedIndex].name,
+      locations[selectedIndex].latitude,
+      locations[selectedIndex].longitude,
     );
     searchRef.current?.blur();
     setOpen(false);
@@ -99,11 +120,14 @@ export default function SearchBar({ setLocationData }: Props) {
         ref={searchRef}
         onChange={(e) => {
           SetSearch(e.target.value);
+          setSelectedIndex(0);
         }}
+        onKeyDown={(e) => handleKeydown(e)}
         onFocus={() => setOpen(true)}
+        tabIndex={0}
       />
       <ul
-        className={`absolute top-10 z-50 w-full divide-y rounded-xl border border-slate-300 bg-white p-2 ${
+        className={`absolute top-11 z-50 w-full divide-y rounded-xl border border-slate-300 bg-white p-2 ${
           open && (locations?.length > 0 || loading) ? "" : "hidden"
         }`}
       >
@@ -127,14 +151,18 @@ export default function SearchBar({ setLocationData }: Props) {
             </div>
           </li>
         ) : (
-          locations?.map((data) => (
+          locations?.map((data, index) => (
             <li
-              className="cursor-pointer p-2 hover:bg-slate-100"
+              className={`cursor-pointer p-2 ${
+                selectedIndex === index ? "bg-slate-100" : ""
+              }`}
+              onMouseEnter={() => setSelectedIndex(index)}
               onClick={() => {
                 handleClick(data.name, data.latitude, data.longitude);
                 setOpen(false);
               }}
               key={data.id}
+              tabIndex={index + 1}
             >
               <p>{data.name}</p>
               <p className="text-sm text-slate-500">

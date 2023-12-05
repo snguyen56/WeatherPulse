@@ -45,7 +45,7 @@ export default function CurrentWeather({ weatherData, city }: Props) {
       <div className="flex min-h-[100px] w-full justify-center">
         <img src={Logo} alt="WeatherPulse Logo" />
       </div>
-      <div className="mb-5 flex flex-col items-center gap-2 text-center">
+      <div className="my-4 flex flex-col items-center gap-2 text-center">
         <h2 className="text-4xl font-semibold">{city}</h2>
         <div className="flex items-center">
           <IconContext.Provider value={{ size: "175" }}>
