@@ -11,6 +11,8 @@ import {
 import { IconContext } from "react-icons";
 import { WeatherCodes } from "../../util/WeatherCodes";
 import { weatherData } from "../../hooks/useWeatherData";
+import GetDayNightIcon from "../../util/GetDayNightIcon";
+
 type Props = {
   weatherData: weatherData;
   city: string;
@@ -49,11 +51,10 @@ export default function CurrentWeather({ weatherData, city }: Props) {
         <h2 className="text-4xl font-semibold">{city}</h2>
         <div className="flex items-center">
           <IconContext.Provider value={{ size: "175" }}>
-            {
-              WeatherCodes.find(
-                ({ code }) => code === weatherData.current.weather_code,
-              )?.dayIcon
-            }
+            {GetDayNightIcon(
+              weatherData.current.is_day,
+              weatherData.current.weather_code,
+            )}
           </IconContext.Provider>
           <p className="pb-5 text-8xl">{weatherData.current.temperature_2m}°</p>
         </div>

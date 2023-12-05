@@ -5,6 +5,7 @@ import { IconContext } from "react-icons";
 import { location, weatherData } from "../../hooks/useWeatherData";
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import { hourlyDayNightIcons } from "../../util/GetDayNightIcon";
 
 type Props = {
   weatherData: weatherData;
@@ -38,12 +39,11 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
                   <h3 className="mb-2 font-bold">
                     {new Date(time).toLocaleTimeString([], { hour: "2-digit" })}
                   </h3>
-                  {
-                    WeatherCodes.find(
-                      ({ code }) =>
-                        code === weatherData.hourly.weather_code[index],
-                    )?.dayIcon
-                  }
+                  {hourlyDayNightIcons(
+                    weatherData.daily.sunset[index],
+                    time,
+                    weatherData.hourly.weather_code[index],
+                  )}
                   <p>{weatherData.hourly.temperature_2m[index]}°</p>
                 </div>
               ))}
