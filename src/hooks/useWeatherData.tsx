@@ -69,9 +69,9 @@ export type weatherData = {
 export default function useWeatherData() {
   const [weatherData, setWeatherData] = useState<weatherData>();
   const [locationData, setLocationData] = useState<location>({
-    city: "Berlin",
-    latitude: 52.52,
-    longitude: 13.41,
+    city: "Atlanta",
+    latitude: 33.749,
+    longitude: -84.38798,
   });
 
   useEffect(() => {
