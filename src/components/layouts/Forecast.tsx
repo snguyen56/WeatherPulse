@@ -52,10 +52,10 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
           </motion.div>
         </IconContext.Provider>
       </Card>
-      <h2 className="mb-4 mt-8 text-4xl font-bold ">7-Day Forecast</h2>
+      <h2 className="mb-4 mt-8 text-4xl font-bold">7-Day Forecast</h2>
       <Card className="bg-primary p-4">
         <IconContext.Provider value={{ size: "50" }}>
-          <table className="w-full table-auto text-lg md:text-xl">
+          <table className="w-full table-auto text-sm md:text-xl">
             <thead>
               <tr className="text-left">
                 <th>Weekday</th>

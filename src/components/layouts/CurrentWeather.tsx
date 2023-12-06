@@ -49,7 +49,7 @@ export default function CurrentWeather({
   ];
 
   return (
-    <section className="flex h-3/5 flex-col p-5 lg:h-screen lg:w-1/4">
+    <section className="flex h-4/5 flex-col p-5 lg:h-screen lg:w-1/4">
       <div className="flex min-h-[100px] w-full justify-center">
         <img src={Logo} alt="WeatherPulse Logo" />
       </div>
