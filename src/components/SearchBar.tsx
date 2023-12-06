@@ -1,72 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { location } from "../hooks/useWeatherData";
+import useGeolocation from "../hooks/useGeolocation";
+import useClickAwayListener from "../hooks/useClickAwayListener";
 
 type Props = {
   setLocationData: React.Dispatch<React.SetStateAction<location>>;
 };
 
-type geocode = {
-  id: number;
-  name: string;
-  latitude: number;
-  longitude: number;
-  elevation: number;
-  feature_code: string;
-  country_code: string;
-  admin1_id: number;
-  admin3_id: number;
-  admin4_id: number;
-  timezone: string;
-  population: number;
-  postcodes: number[];
-  country_id: number;
-  country: string;
-  admin1: string;
-  admin3: string;
-  admin4: string;
-};
-
 export default function SearchBar({ setLocationData }: Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [search, SetSearch] = useState<string>("");
-  const [locations, setLocations] = useState<geocode[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const dropdownRef = useRef<HTMLFormElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const handleClick = (e: MouseEvent | TouchEvent) => {
-      if (
-        dropdownRef.current !== null &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
+  const { locations, setLocations, loading } = useGeolocation(search);
 
-    document.addEventListener("click", handleClick);
-  }, []);
-
-  useEffect(() => {
-    const getData = setTimeout(() => {
-      if (search.length > 1) {
-        setLoading(true);
-        fetch(
-          `https://geocoding-api.open-meteo.com/v1/search?name=${search}&count=10&language=en&format=json`,
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            setLocations(data.results);
-            setLoading(false);
-          })
-          .catch((error) => console.error("Error getting locations: ", error));
-      }
-    }, 300);
-
-    return () => clearTimeout(getData);
-  }, [search]);
+  useClickAwayListener(dropdownRef, setOpen);
 
   function handleClick(city: string, latitude: number, longitude: number) {
     const data = { city: city, latitude: latitude, longitude: longitude };
