@@ -10,7 +10,7 @@ import {
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
 import { WeatherCodes } from "../../util/WeatherCodes";
-import { weatherData } from "../../hooks/useWeatherData";
+import { weatherData, location } from "../../hooks/useWeatherData";
 import GetDayNightIcon from "../../util/GetDayNightIcon";
 import SearchBar from "../SearchBar";
 
