@@ -42,7 +42,8 @@ export default function Forecast({ weatherData, setLocationData }: Props) {
                     {new Date(time).toLocaleTimeString([], { hour: "2-digit" })}
                   </h3>
                   {hourlyDayNightIcons(
-                    weatherData.daily.sunset[index],
+                    weatherData.daily.sunrise[0],
+                    weatherData.daily.sunset[0],
                     time,
                     weatherData.hourly.weather_code[index],
                   )}

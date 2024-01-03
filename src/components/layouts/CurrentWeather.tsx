@@ -44,7 +44,7 @@ export default function CurrentWeather({
     {
       title: "Wind Speed",
       icon: <WiStrongWind title="wind speed" />,
-      data: `${weatherData.current.wind_speed_10m}mph`,
+      data: `${weatherData.current.wind_speed_10m.toFixed(0)}mph`,
     },
   ];
 
@@ -67,7 +67,7 @@ export default function CurrentWeather({
               weatherData.current.weather_code,
             )}
           </IconContext.Provider>
-          <p className="3xl:text-8xl pb-5 text-7xl lg:text-4xl xl:text-6xl 2xl:text-7xl">
+          <p className="pb-5 text-7xl lg:text-4xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl">
             {weatherData.current.temperature_2m}°
           </p>
         </div>
@@ -91,7 +91,7 @@ export default function CurrentWeather({
               <span className="hidden 2xl:block">
                 <WiSunrise title="sunrise" />
               </span>
-              <p className="3xl:text-3xl pt-1 lg:text-2xl xl:text-3xl 2xl:text-2xl">
+              <p className="pt-1 lg:text-2xl xl:text-3xl 2xl:text-2xl 3xl:text-3xl">
                 {new Date(weatherData.daily.sunrise[0])
                   .toLocaleTimeString([], {
                     hour: "2-digit",
@@ -107,7 +107,7 @@ export default function CurrentWeather({
               <span className="hidden 2xl:block">
                 <WiSunset title="sunset" />
               </span>
-              <p className="3xl:text-3xl pt-1 lg:text-2xl xl:text-3xl 2xl:text-2xl">
+              <p className="pt-1 lg:text-2xl xl:text-3xl 2xl:text-2xl 3xl:text-3xl">
                 {new Date(weatherData.daily.sunset[0])
                   .toLocaleTimeString([], {
                     hour: "2-digit",
@@ -123,8 +123,8 @@ export default function CurrentWeather({
             <Card className="h-36 bg-slate-300 p-4" key={data.title}>
               <h2>{data.title}:</h2>
               <div className="mt-4 flex items-start gap-2">
-                <span className="3xl:block hidden">{data.icon}</span>
-                <p className="3xl:text-4xl lg:text-2xl xl:text-3xl">
+                <span className="hidden 3xl:block">{data.icon}</span>
+                <p className="lg:text-2xl xl:text-3xl 3xl:text-4xl">
                   {data.data}
                 </p>
               </div>

@@ -9,11 +9,16 @@ export default function GetDayNightIcon(isDay: number, weatherCode: number) {
 }
 
 export function hourlyDayNightIcons(
+  sunrise: string,
   sunset: string,
   time: string,
   weatherCode: number,
 ) {
-  if (new Date(sunset).getTime() > new Date(time).getTime()) {
+  const currentTime = new Date(time).getTime();
+  if (
+    currentTime > new Date(sunrise).getTime() &&
+    new Date(sunset).getTime() > currentTime
+  ) {
     return WeatherCodes.find(({ code }) => code === weatherCode)?.dayIcon;
   } else {
     return WeatherCodes.find(({ code }) => code === weatherCode)?.nightIcon;

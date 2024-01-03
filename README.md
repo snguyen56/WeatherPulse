@@ -77,7 +77,7 @@ Make sure that you have NodeJS installed in order to run this project.
 
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/snguyen56/WeatherPulse.git
    ```
 3. Install NPM packages
    ```sh
